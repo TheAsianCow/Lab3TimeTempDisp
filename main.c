@@ -160,10 +160,17 @@ int checkTemp(void) {
     return 0;
 }
 
+<<<<<<< HEAD
+void averageTemp() {
+    int added = 0;
+    int i;
+    for (i = 0; i <= 30; i++) {
+=======
 void averageTemp(void) {
     int added = 0;
     int i;
     for (i = 0; i < 30; i++) {
+>>>>>>> 7707635db6dd6b3ecc9de6ac2ff280bda10ce82b
         added += tempStore[i];
     }
     avgTemp = added / 30;
@@ -171,7 +178,11 @@ void averageTemp(void) {
 // initiates timer for one second
 void initTimer(void) {
     TA2CTL  = (TASSEL__ACLK|ID__1|MC__UP);
+<<<<<<< HEAD
+    TA2CCR0  = CLK_SPEED - 1; // Sets the timer for one second.
+=======
     TA2CCR0  = CLK_SPEED-1; // Sets the timer for one second.
+>>>>>>> 7707635db6dd6b3ecc9de6ac2ff280bda10ce82b
     TA2CCTL0 = CCIE; // IE
 }
 
