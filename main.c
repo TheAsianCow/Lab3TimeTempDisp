@@ -127,22 +127,22 @@ void displayTemp(float inAvgTempC){
     inAvgTempC*=10;
     inAvgTempF*=10;
 
-    c[4] = inAvgTempC%10;
+    c[4] = (char)inAvgTempC%10;
     inAvgTempC/=10;
-    c[2] = inAvgTempC%10;
+    c[2] = (char)inAvgTempC%10;
     inAvgTempC/=10;
-    c[1] = inAvgTempC%10;
+    c[1] = (char)inAvgTempC%10;
     inAvgTempC/=10;
-    c[0] = inAvgTempC%10;
+    c[0] = (char)inAvgTempC%10;
     inAvgTempC/=10;
 
-    f[4] = inAvgTempF%10;
+    f[4] = (char)inAvgTempF%10;
     inAvgTempF/=10;
-    f[2] = inAvgTempF%10;
+    f[2] = (char)inAvgTempF%10;
     inAvgTempF/=10;
-    f[1] = inAvgTempF%10;
+    f[1] = (char)inAvgTempF%10;
     inAvgTempF/=10;
-    f[0] = inAvgTempF%10;
+    f[0] = (char)inAvgTempF%10;
     inAvgTempF/=10;
 
     Graphics_drawStringCentered(&g_sContext, c, AUTO_STRING_LENGTH, 48, 30, OPAQUE_TEXT);
@@ -157,12 +157,12 @@ void initAdc(void) {
 // Check Temp
 // Check Temp returns current temperature of the board
 int checkTemp(void) {
-
+    return 0;
 }
 
 void averageTemp(void) {
     int added = 0;
-    int count;
+    int i;
     for (i = 0; i < 30; i++) {
         added += tempStore[i];
     }
@@ -189,6 +189,7 @@ void main(void){
     WDTCTL = WDTPW | WDTHOLD;
     _BIS_SR(GIE);
     initLeds();
+    initTimer();
 
     configDisplay();
     configKeypad();
