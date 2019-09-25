@@ -197,5 +197,5 @@ void main(void){
     timerCount = 0;
     avgTemp = 0;
 
-
+    for(;;);
 }
