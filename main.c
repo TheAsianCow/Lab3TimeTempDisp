@@ -7,11 +7,14 @@
 
 #include "peripherals.h"
 
+#define CLK_SPEED 32768
+
 void displayTime(long unsigned int inTime);
 void displayTemp(float inAvgTempC);
 
 unsigned int leapYear = 0;//implementation of determining if leapYear is needed
-
+unsigned int tempStore[30];
+unsigned int averageTemp = 0;
 //important to use a copy of the timer count cuz if the variable is modified directly then the time wouldn't be accurate anymore
 void displayTime(long unsigned int inTime){
     unsigned char date[6];
@@ -139,6 +142,38 @@ void displayTemp(float inAvgTempC){
 
     Graphics_drawStringCentered(&g_sContext, c, AUTO_STRING_LENGTH, 48, 30, OPAQUE_TEXT);
     Graphics_drawStringCentered(&g_sContext, f, AUTO_STRING_LENGTH, 48, 40, OPAQUE_TEXT);
+}
+// Intitializes adc
+// sets adc ref volt to read temp to nearest hundred
+void initAdc() {
+
+}
+
+// Check Temp
+// Check Temp returns current temperature of the board
+int checkTemp() {
+
+}
+
+void averageTemp(unsigned int tempStore[30]) {
+    int added = 0;
+    int count;
+    for (i = 0; i <= 30; i++) {
+        added += tempStore[i];
+    }
+    averageTemp = added / 30;
+}
+// initiates timer for one second
+void timerInit() {
+    TA2CTL  = (TASSEL__ACLK|ID__1|MC__UP);
+    TA2CCR0  = CLK_SPEED; // Sets the timer for one second.
+    TA2CCTL0 = CCIE; // IE
+}
+
+// Interrupt Function
+#pragma vector=TIMER2_A0_VECTOR
+interrupt void Timer_A2 (void) {
+
 }
 
 void main(void){
