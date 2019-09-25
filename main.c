@@ -11,10 +11,15 @@
 
 void displayTime(long unsigned int inTime);
 void displayTemp(float inAvgTempC);
+void initADC(void);
+int checkTemp(void);
+void averageTemp(void);
+void initTimer(void);
 
 unsigned int leapYear = 0;//implementation of determining if leapYear is needed
 unsigned int tempStore[30];
-unsigned int averageTemp = 0;
+unsigned long int timerCount;
+float avgTemp;
 //important to use a copy of the timer count cuz if the variable is modified directly then the time wouldn't be accurate anymore
 void displayTime(long unsigned int inTime){
     unsigned char date[6];
@@ -145,44 +150,62 @@ void displayTemp(float inAvgTempC){
 }
 // Intitializes adc
 // sets adc ref volt to read temp to nearest hundred
-void initAdc() {
+void initAdc(void) {
 
 }
 
 // Check Temp
 // Check Temp returns current temperature of the board
-int checkTemp() {
+int checkTemp(void) {
 
 }
 
+<<<<<<< HEAD
 void averageTemp() {
     int added = 0;
     int i;
     for (i = 0; i <= 30; i++) {
+=======
+void averageTemp(void) {
+    int added = 0;
+    int count;
+    for (i = 0; i < 30; i++) {
+>>>>>>> 7707635db6dd6b3ecc9de6ac2ff280bda10ce82b
         added += tempStore[i];
     }
-    averageTemp = added / 30;
+    avgTemp = added / 30;
 }
 // initiates timer for one second
-void timerInit() {
+void initTimer(void) {
     TA2CTL  = (TASSEL__ACLK|ID__1|MC__UP);
+<<<<<<< HEAD
     TA2CCR0  = CLK_SPEED - 1; // Sets the timer for one second.
+=======
+    TA2CCR0  = CLK_SPEED-1; // Sets the timer for one second.
+>>>>>>> 7707635db6dd6b3ecc9de6ac2ff280bda10ce82b
     TA2CCTL0 = CCIE; // IE
 }
 
 // Interrupt Function
 #pragma vector=TIMER2_A0_VECTOR
 interrupt void Timer_A2 (void) {
-
+    timerCount++;
+    if(timerCount%2==0){
+        displayTime(timerCount);
+        displayTemp(avgTemp);
+    }
 }
 
 void main(void){
     WDTCTL = WDTPW | WDTHOLD;
+    _BIS_SR(GIE);
     initLeds();
 
     configDisplay();
     configKeypad();
 
+    timerCount = 0;
+    avgTemp = 0;
 
 
 }
