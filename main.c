@@ -148,10 +148,20 @@ void displayTemp(float inAvgTempC){
     Graphics_drawStringCentered(&g_sContext, c, AUTO_STRING_LENGTH, 48, 30, OPAQUE_TEXT);
     Graphics_drawStringCentered(&g_sContext, f, AUTO_STRING_LENGTH, 48, 40, OPAQUE_TEXT);
 }
+
 // Intitializes adc
 // sets adc ref volt to read temp to nearest hundred
 void initAdc(void) {
+    REFCTLO &= ~REFMSTR;
 
+    P6SEL &= BIT0; //
+    P6DIR &= BIT0; //
+
+    ADC12CTL0 = ADC12SHT0_0 | ADC12REFON | ADC12ON;
+    ADC12CTL1 = ADC12SHP;
+
+    ADCMCTL0 = ADC12SREF_1 + ADC12INCH_10; // temp sensor
+    ADCMCTL1 = ADC12SREF_1 + ADC12INCH_0; // scroll wheel
 }
 
 // Check Temp
@@ -160,7 +170,7 @@ int checkTemp(void) {
     return 0;
 }
 
-void averageTemp() {
+void averageTemp(void) {
     int added = 0;
     int i;
     for (i = 0; i < 30; i++) {
