@@ -14,7 +14,7 @@ main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/_types
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/machine/_types.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/machine/_stdint.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/_stdint.h
-main.obj: C:/Users/Jeffrey\ Huang/Documents/WPI/2019-2020/A\ term/ECE2049/Labs/Lab3TimeTempDisp/grlib/grlib.h
+main.obj: C:/Users/Bryce/Documents/Git\ Program\ Stuff/Lab3TimeTempDisp/grlib/grlib.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/stdbool.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/assert.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/_ti_config.h
@@ -36,7 +36,7 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/_types.h:
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/machine/_types.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/machine/_stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/sys/_stdint.h: 
-C:/Users/Jeffrey\ Huang/Documents/WPI/2019-2020/A\ term/ECE2049/Labs/Lab3TimeTempDisp/grlib/grlib.h: 
+C:/Users/Bryce/Documents/Git\ Program\ Stuff/Lab3TimeTempDisp/grlib/grlib.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/stdbool.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/assert.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.2.LTS/include/_ti_config.h: 

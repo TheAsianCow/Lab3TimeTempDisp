@@ -152,7 +152,7 @@ void displayTemp(float inAvgTempC){
 // Intitializes adc
 // sets adc ref volt to read temp to nearest hundred
 void initAdc(void) {
-    REFCTLO &= ~REFMSTR;
+    REFCTL0 &= ~REFMSTR;
 
     P6SEL &= BIT0; //
     P6DIR &= BIT0; //
@@ -160,8 +160,8 @@ void initAdc(void) {
     ADC12CTL0 = ADC12SHT0_0 | ADC12REFON | ADC12ON;
     ADC12CTL1 = ADC12SHP;
 
-    ADCMCTL0 = ADC12SREF_1 + ADC12INCH_10; // temp sensor
-    ADCMCTL1 = ADC12SREF_1 + ADC12INCH_0; // scroll wheel
+    ADC12MCTL0 = ADC12SREF_1 + ADC12INCH_10; // temp sensor
+    ADC12MCTL1 = ADC12SREF_1 + ADC12INCH_0; // scroll wheel
 }
 
 // Check Temp
