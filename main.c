@@ -8,31 +8,36 @@
 #include "peripherals.h"
 
 #define CLK_SPEED 32768
+#define CALADC12_15V_30C  *((unsigned int *)0x1A1A)
+#define CALADC12_15V_85C  *((unsigned int *)0x1A1C)
 
 void displayTime(long unsigned int inTime);
 void displayTemp(float inAvgTempC);
 void initADC(void);
-int checkTemp(void);
+__interrupt void Timer_A2_ISR(void);
+__interrupt void ADC12_ISR(void);
 void averageTemp(void);
 void initTimer(void);
 
 unsigned int leapYear = 0;//implementation of determining if leapYear is needed
-unsigned int tempStore[30];
+unsigned int mode;
 unsigned long int timerCount;
-float avgTemp;
+float avgTemp, tempStore[30];
 //important to use a copy of the timer count cuz if the variable is modified directly then the time wouldn't be accurate anymore
 void displayTime(long unsigned int inTime){
-    unsigned char date[6];
+    unsigned char date[7];
     date[3] = ' ';
-    unsigned char time[8];
+    date[6] = '\0';
+    unsigned char time[9];
     time[2] = ':';
     time[5] = ':';
+    time[8] = '\0';
 
-    unsigned int day  =  inTime/86400+1;
+    unsigned int day  =  inTime/86400;
     unsigned int hour = (inTime-day*86400)/3600;
     unsigned int min  = (inTime-day*86400-hour*3600)/60;
     unsigned int sec  =  inTime%60;
-
+    day+=1;
     if(day<=31){
         date[0] = 'J';
         date[1] = 'A';
@@ -114,58 +119,62 @@ void displayTime(long unsigned int inTime){
 }
 
 void displayTemp(float inAvgTempC){
-    unsigned char c[7];
-    unsigned char f[7];
+    unsigned char c[8];
+    unsigned char f[8];
     c[3] = '.';
     c[5] = ' ';
     c[6] = 'C';
+    c[7] = '\0';
     f[3] = '.';
     f[5] = ' ';
     f[6] = 'F';
+    f[7] = '\0';
     float inAvgTempF = inAvgTempC*9/5+32;
 
     inAvgTempC*=10;
     inAvgTempF*=10;
 
-    c[4] = (char)inAvgTempC%10;
+    c[4] = (char)inAvgTempC%10+0x30;
     inAvgTempC/=10;
-    c[2] = (char)inAvgTempC%10;
+    c[2] = (char)inAvgTempC%10+0x30;
     inAvgTempC/=10;
-    c[1] = (char)inAvgTempC%10;
+    c[1] = (char)inAvgTempC%10+0x30;
     inAvgTempC/=10;
-    c[0] = (char)inAvgTempC%10;
+    c[0] = (char)inAvgTempC%10+0x30;
     inAvgTempC/=10;
 
-    f[4] = (char)inAvgTempF%10;
+    f[4] = (char)inAvgTempF%10+0x30;
     inAvgTempF/=10;
-    f[2] = (char)inAvgTempF%10;
+    f[2] = (char)inAvgTempF%10+0x30;
     inAvgTempF/=10;
-    f[1] = (char)inAvgTempF%10;
+    f[1] = (char)inAvgTempF%10+0x30;
     inAvgTempF/=10;
-    f[0] = (char)inAvgTempF%10;
+    f[0] = (char)inAvgTempF%10+0x30;
     inAvgTempF/=10;
 
     Graphics_drawStringCentered(&g_sContext, c, AUTO_STRING_LENGTH, 48, 30, OPAQUE_TEXT);
     Graphics_drawStringCentered(&g_sContext, f, AUTO_STRING_LENGTH, 48, 40, OPAQUE_TEXT);
+    Graphics_flushBuffer(&g_sContext);
 }
 // Intitializes adc
 // sets adc ref volt to read temp to nearest hundred
-void initAdc(void) {
+void initADC(void) {
+    ADC12CTL0 &= ~ADC12ENC;
+    ADC12CTL0 = ADC12SHT0_9|ADC12REFON|ADC12ON|ADC12MSC;
+    ADC12CTL1 = ADC12SHP|ADC12CONSEQ_1;
+    ADC12MCTL0 = ADC12SREF_1|ADC12INCH_0;
+    ADC12MCTL1 = ADC12SREF_1|ADC12INCH_10|ADC12EOS;
+    ADC12IE = BIT1;
 
-}
-
-// Check Temp
-// Check Temp returns current temperature of the board
-int checkTemp(void) {
-    return 0;
+    P6SEL |= BIT0;
+    __delay_cycles(100);
+    ADC12CTL0 |= ADC12ENC;
 }
 
 void averageTemp(void) {
-    int added = 0;
+    float added = 0;
     int i;
-    for (i = 0; i < 30; i++) {
-        added += tempStore[i];
-    }
+    for (i = 0; i < 30; i++) added += tempStore[i];
     avgTemp = added / 30;
 }
 // initiates timer for one second
@@ -175,27 +184,53 @@ void initTimer(void) {
     TA2CCTL0 = CCIE; // IE
 }
 
-// Interrupt Function
+// Timer Interrupt Function
 #pragma vector=TIMER2_A0_VECTOR
-interrupt void Timer_A2 (void) {
+__interrupt void Timer_A2_ISR(void) {
     timerCount++;
-    if(timerCount%2==0){
+    averageTemp();
+//    if(timerCount%2==0){
         displayTime(timerCount);
         displayTemp(avgTemp);
-    }
+//    }
+    ADC12CTL0 |= ADC12SC;
+}
+
+//ADC12 Interrupt Function
+#pragma vector=ADC12_VECTOR
+__interrupt void ADC12_ISR(void){
+    volatile float degC_per_bit, tempC;
+    volatile unsigned int bits30, bits85;
+
+    bits30 = CALADC12_15V_30C;
+    bits85 = CALADC12_15V_85C;
+    degC_per_bit = ((float)(85.0 - 30.0))/((float)(bits85-bits30));
+
+    unsigned int in_temp = ADC12MEM1 & 0x0FFF;
+    tempC = (float)((long)in_temp - CALADC12_15V_30C) * degC_per_bit +30.0;
+    tempStore[timerCount%30] = tempC;
 }
 
 void main(void){
     WDTCTL = WDTPW | WDTHOLD;
+    REFCTL0 &= ~REFMSTR;
     _BIS_SR(GIE);
     initLeds();
     initTimer();
+    initADC();
 
     configDisplay();
+    configBtn();
     configKeypad();
 
     timerCount = 0;
     avgTemp = 0;
+    unsigned char currBtn;
 
-    for(;;);
+    for(;;){
+        currBtn = getBtn();
+        if(currBtn == 'l') setLeds(BIT3);
+        if(currBtn == 'r') setLeds(BIT0);
+//        else Graphics_clearDisplay(&g_sContext);
+    }
 }

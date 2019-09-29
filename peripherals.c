@@ -188,6 +188,27 @@ unsigned char getKey(void)
     return(ret_val);
 }
 
+void configBtn(void){
+    //configure pins to I/O
+    P2SEL &= ~BIT1;
+    P1SEL &= ~BIT1;
+
+    //configure pins to input
+    P2DIR &= ~BIT1;
+    P1DIR &= ~BIT1;
+
+    //configure pullup
+    P2REN |= BIT1;
+    P1REN |= BIT1;
+    P2OUT |= BIT1;
+    P1OUT |= BIT1;
+}
+
+unsigned char getBtn(void){
+    if(!(P2IN & BIT1)) return 'l';
+    if(!(P1IN & BIT1)) return 'r';
+    return 0;
+}
 
 void configDisplay(void)
 {
