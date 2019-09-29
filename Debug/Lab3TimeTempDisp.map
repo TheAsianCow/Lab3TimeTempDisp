@@ -1,7 +1,11 @@
 ******************************************************************************
                   MSP430 Linker PC v18.1.2                     
 ******************************************************************************
+<<<<<<< HEAD
 >> Linked Sun Sep 29 15:53:25 2019
+=======
+>> Linked Sun Sep 29 15:29:59 2019
+>>>>>>> 49a6e3d086843ce64cdc0f9dd063324e29b8d843
 
 OUTPUT FILE NAME:   <Lab3TimeTempDisp.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000044be

@@ -4,7 +4,7 @@
 /***************************************************/
 
 #include <msp430.h>
-
+#include <math.h>
 #include "peripherals.h"
 
 #define CLK_SPEED 32768
@@ -156,8 +156,10 @@ void displayTemp(float inAvgTempC){
     Graphics_drawStringCentered(&g_sContext, f, AUTO_STRING_LENGTH, 48, 40, OPAQUE_TEXT);
     Graphics_flushBuffer(&g_sContext);
 }
+
 // Intitializes adc
 // sets adc ref volt to read temp to nearest hundred
+<<<<<<< HEAD
 void initADC(void) {
     ADC12CTL0 &= ~ADC12ENC;
     ADC12CTL0 = ADC12SHT0_9|ADC12REFON|ADC12ON|ADC12MSC;
@@ -167,6 +169,7 @@ void initADC(void) {
     ADC12IE = BIT1;
 
     P6SEL |= BIT0;
+    P6DIR |= BIT0;
     __delay_cycles(100);
     ADC12CTL0 |= ADC12ENC;
 }
@@ -177,6 +180,12 @@ void averageTemp(void) {
     for (i = 0; i < 30; i++) added += tempStore[i];
     avgTemp = added / 30;
 }
+
+// scrollWheel
+int scrollWheel(int items) {
+    return floor (adcRead(1) * (items / 3.3)); // returns a number based on the position of the wheel and the number of items
+}
+
 // initiates timer for one second
 void initTimer(void) {
     TA2CTL  = (TASSEL__ACLK|ID__1|MC__UP);
