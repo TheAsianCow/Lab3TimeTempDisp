@@ -363,14 +363,16 @@ void main(void){
             tmpHour = 0;
             tmpMin = 0;
             tmpSec = 0;
+            setLeds(0);
             startTimerA2();
         }
         if(currBtn == 'l'){
-            if(mode==0)stopTimerA2();
-            mode++;
-            if(mode>5){
-                mode=1;
+            if(mode==0){
+                stopTimerA2();
+                setLeds(BIT3);
             }
+            mode++;
+            if(mode>5)mode=1;
         }
         switch(mode){
         case 1:

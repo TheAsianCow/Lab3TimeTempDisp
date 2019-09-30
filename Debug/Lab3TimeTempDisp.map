@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.1.2                     
 ******************************************************************************
->> Linked Sun Sep 29 23:36:51 2019
+>> Linked Sun Sep 29 23:40:29 2019
 
 OUTPUT FILE NAME:   <Lab3TimeTempDisp.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000044e0
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  000029da  00011a26  RWIX
+  FLASH2                00010000   00014400  00002a2a  000119d6  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -212,81 +212,82 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.c.obj (.reset)
 
-.text      0    00010000    000029da     
+.text      0    00010000    00002a2a     
                   00010000    000007e6     grlib.lib : string.obj (.text:Graphics_drawString)
                   000107e6    000005a8     main.obj (.text:displayTime)
-                  00010d8e    00000358     main.obj (.text:main)
-                  000110e6    000002a8     main.obj (.text:displayTmpTime)
-                  0001138e    00000298     main.obj (.text:displayTemp)
-                  00011626    000001c6     Sharp96x96.obj (.text:Sharp96x96_RectFill)
-                  000117ec    00000184     Sharp96x96.obj (.text:Sharp96x96_LineDrawH)
-                  00011970    00000132     rts430x_lc_rd_eabi.lib : fs_add.asm.obj (.text)
-                  00011aa2    000000f4     Sharp96x96.obj (.text:Sharp96x96_Flush)
-                  00011b96    000000dc     grlib.lib : line.obj (.text:Graphics_drawLineH)
-                  00011c72    000000d0     main.obj (.text:getDayFromMonth)
-                  00011d42    000000ce     grlib.lib : string.obj (.text:Graphics_getStringWidth)
-                  00011e10    000000c2     Sharp96x96.obj (.text:Sharp96x96_LineDrawV)
-                  00011ed2    000000b8     rts430x_lc_rd_eabi.lib : fs_mpy.asm.obj (.text)
-                  00011f8a    000000a0     Sharp96x96.obj (.text:Sharp96x96_PixelDraw)
-                  0001202a    00000092     Sharp96x96.obj (.text:Sharp96x96_DrawMultiple)
-                  000120bc    00000092     main.obj (.text:averageTemp)
-                  0001214e    00000090     rts430x_lc_rd_eabi.lib : fs_div.asm.obj (.text)
-                  000121de    00000078     grlib.lib : string.obj (.text:Graphics_drawStringCentered)
-                  00012256    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  000122cc    0000006a     Sharp96x96.obj (.text:Sharp96x96_ClearScreen)
-                  00012336    0000006a     HAL_MSP_EXP430FR5529_Sharp96x96.obj (.text:Sharp96x96_Init)
-                  000123a0    00000068     rts430x_lc_rd_eabi.lib : fs_toi.asm.obj (.text)
-                  00012408    00000066     Sharp96x96.obj (.text:Sharp96x96_InitializeDisplayBuffer)
-                  0001246e    00000058     rts430x_lc_rd_eabi.lib : div32u.asm.obj (.text)
-                  000124c6    00000054                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  0001251a    00000052     Sharp96x96.obj (.text:Sharp96x96_SendToggleVCOMCommand)
-                  0001256c    0000004e     peripherals.obj (.text:configDisplay)
-                  000125ba    0000004a     grlib.lib : string.obj (.text:Graphics_getNumberOfLeadingZeros)
-                  00012604    0000004a     rts430x_lc_rd_eabi.lib : fs_ltof.asm.obj (.text)
-                  0001264e    00000048     peripherals.obj (.text:configKeypad)
-                  00012696    00000040     rts430x_lc_rd_eabi.lib : div32s.asm.obj (.text)
-                  000126d6    0000003c     grlib.lib : context.obj (.text:Graphics_initContext)
-                  00012712    0000003a     main.obj (.text:initADC)
-                  0001274c    00000038     Sharp96x96.obj (.text:Sharp96x96_ColorTranslate)
-                  00012784    00000036     Sharp96x96.obj (.text:reverse)
-                  000127ba    0000002c     rts430x_lc_rd_eabi.lib : div16s.asm.obj (.text)
-                  000127e6    00000024                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
-                  0001280a    00000024                            : fs_utof.asm.obj (.text)
-                  0001282e    00000024                            : mult32_f5hw.asm.obj (.text)
-                  00012852    00000022     peripherals.obj (.text:configBtn)
-                  00012874    0000001c     peripherals.obj (.text:getBtn)
-                  00012890    0000001a     grlib.lib : display.obj (.text:Graphics_drawHorizontalLineOnDisplay)
-                  000128aa    00000018               : context.obj (.text:Graphics_setBackgroundColor)
-                  000128c2    00000018               : context.obj (.text:Graphics_setForegroundColor)
-                  000128da    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.asm.obj (.text)
-                  000128f2    00000016                            : div16u.asm.obj (.text)
-                  00012908    00000014     peripherals.obj (.text:initLeds)
-                  0001291c    00000014     rts430x_lc_rd_eabi.lib : memcpy.c.obj (.text:memcpy)
-                  00012930    00000014     main.obj (.text:startTimerA2)
-                  00012944    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  00012956    00000010     grlib.lib : context.obj (.text:Graphics_clearDisplay)
-                  00012966    0000000e               : display.obj (.text:Graphics_clearDisplayOnDisplay)
-                  00012974    0000000e               : display.obj (.text:Graphics_drawPixelOnDisplay)
-                  00012982    0000000e               : display.obj (.text:Graphics_flushOnDisplay)
-                  00012990    0000000e               : display.obj (.text:Graphics_translateColorOnDisplay)
-                  0001299e    0000000c     main.obj (.text:stopTimerA2)
-                  000129aa    0000000a     grlib.lib : context.obj (.text:Graphics_flushBuffer)
-                  000129b4    0000000a     rts430x_lc_rd_eabi.lib : asr16.asm.obj (.text)
-                  000129be    0000000a                            : lsl16.asm.obj (.text)
-                  000129c8    00000006     grlib.lib : context.obj (.text:Graphics_setFont)
-                  000129ce    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
-                  000129d4    00000004                            : pre_init.c.obj (.text:_system_pre_init)
-                  000129d8    00000002                            : startup.c.obj (.text:_system_post_cinit)
+                  00010d8e    00000364     main.obj (.text:main)
+                  000110f2    000002a8     main.obj (.text:displayTmpTime)
+                  0001139a    00000298     main.obj (.text:displayTemp)
+                  00011632    000001c6     Sharp96x96.obj (.text:Sharp96x96_RectFill)
+                  000117f8    00000184     Sharp96x96.obj (.text:Sharp96x96_LineDrawH)
+                  0001197c    00000132     rts430x_lc_rd_eabi.lib : fs_add.asm.obj (.text)
+                  00011aae    000000f4     Sharp96x96.obj (.text:Sharp96x96_Flush)
+                  00011ba2    000000dc     grlib.lib : line.obj (.text:Graphics_drawLineH)
+                  00011c7e    000000d0     main.obj (.text:getDayFromMonth)
+                  00011d4e    000000ce     grlib.lib : string.obj (.text:Graphics_getStringWidth)
+                  00011e1c    000000c2     Sharp96x96.obj (.text:Sharp96x96_LineDrawV)
+                  00011ede    000000b8     rts430x_lc_rd_eabi.lib : fs_mpy.asm.obj (.text)
+                  00011f96    000000a0     Sharp96x96.obj (.text:Sharp96x96_PixelDraw)
+                  00012036    00000092     Sharp96x96.obj (.text:Sharp96x96_DrawMultiple)
+                  000120c8    00000092     main.obj (.text:averageTemp)
+                  0001215a    00000090     rts430x_lc_rd_eabi.lib : fs_div.asm.obj (.text)
+                  000121ea    00000078     grlib.lib : string.obj (.text:Graphics_drawStringCentered)
+                  00012262    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000122d8    0000006a     Sharp96x96.obj (.text:Sharp96x96_ClearScreen)
+                  00012342    0000006a     HAL_MSP_EXP430FR5529_Sharp96x96.obj (.text:Sharp96x96_Init)
+                  000123ac    00000068     rts430x_lc_rd_eabi.lib : fs_toi.asm.obj (.text)
+                  00012414    00000066     Sharp96x96.obj (.text:Sharp96x96_InitializeDisplayBuffer)
+                  0001247a    00000058     rts430x_lc_rd_eabi.lib : div32u.asm.obj (.text)
+                  000124d2    00000054                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  00012526    00000052     Sharp96x96.obj (.text:Sharp96x96_SendToggleVCOMCommand)
+                  00012578    0000004e     peripherals.obj (.text:configDisplay)
+                  000125c6    0000004a     grlib.lib : string.obj (.text:Graphics_getNumberOfLeadingZeros)
+                  00012610    0000004a     rts430x_lc_rd_eabi.lib : fs_ltof.asm.obj (.text)
+                  0001265a    00000048     peripherals.obj (.text:configKeypad)
+                  000126a2    00000044     peripherals.obj (.text:setLeds)
+                  000126e6    00000040     rts430x_lc_rd_eabi.lib : div32s.asm.obj (.text)
+                  00012726    0000003c     grlib.lib : context.obj (.text:Graphics_initContext)
+                  00012762    0000003a     main.obj (.text:initADC)
+                  0001279c    00000038     Sharp96x96.obj (.text:Sharp96x96_ColorTranslate)
+                  000127d4    00000036     Sharp96x96.obj (.text:reverse)
+                  0001280a    0000002c     rts430x_lc_rd_eabi.lib : div16s.asm.obj (.text)
+                  00012836    00000024                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  0001285a    00000024                            : fs_utof.asm.obj (.text)
+                  0001287e    00000024                            : mult32_f5hw.asm.obj (.text)
+                  000128a2    00000022     peripherals.obj (.text:configBtn)
+                  000128c4    0000001c     peripherals.obj (.text:getBtn)
+                  000128e0    0000001a     grlib.lib : display.obj (.text:Graphics_drawHorizontalLineOnDisplay)
+                  000128fa    00000018               : context.obj (.text:Graphics_setBackgroundColor)
+                  00012912    00000018               : context.obj (.text:Graphics_setForegroundColor)
+                  0001292a    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.asm.obj (.text)
+                  00012942    00000016                            : div16u.asm.obj (.text)
+                  00012958    00000014     peripherals.obj (.text:initLeds)
+                  0001296c    00000014     rts430x_lc_rd_eabi.lib : memcpy.c.obj (.text:memcpy)
+                  00012980    00000014     main.obj (.text:startTimerA2)
+                  00012994    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  000129a6    00000010     grlib.lib : context.obj (.text:Graphics_clearDisplay)
+                  000129b6    0000000e               : display.obj (.text:Graphics_clearDisplayOnDisplay)
+                  000129c4    0000000e               : display.obj (.text:Graphics_drawPixelOnDisplay)
+                  000129d2    0000000e               : display.obj (.text:Graphics_flushOnDisplay)
+                  000129e0    0000000e               : display.obj (.text:Graphics_translateColorOnDisplay)
+                  000129ee    0000000c     main.obj (.text:stopTimerA2)
+                  000129fa    0000000a     grlib.lib : context.obj (.text:Graphics_flushBuffer)
+                  00012a04    0000000a     rts430x_lc_rd_eabi.lib : asr16.asm.obj (.text)
+                  00012a0e    0000000a                            : lsl16.asm.obj (.text)
+                  00012a18    00000006     grlib.lib : context.obj (.text:Graphics_setFont)
+                  00012a1e    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
+                  00012a24    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+                  00012a28    00000002                            : startup.c.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
        Module                                code    ro data   rw data
        ------                                ----    -------   -------
     .\
-       main.obj                              4316    4         136    
-       peripherals.obj                       242     2         28     
+       main.obj                              4328    4         136    
+       peripherals.obj                       310     2         28     
     +--+-------------------------------------+-------+---------+---------+
-       Total:                                4558    6         164    
+       Total:                                4638    6         164    
                                                                       
     .\LcdDriver\
        Sharp96x96.obj                        1986    60        1154   
@@ -357,7 +358,7 @@ MODULE SUMMARY
        Stack:                                0       0         160    
        Linker Generated:                     0       42        0      
     +--+-------------------------------------+-------+---------+---------+
-       Grand Total:                          10984   1108      1478   
+       Grand Total:                          11064   1108      1478   
 
 
 LINKER GENERATED COPY TABLES
@@ -462,7 +463,7 @@ address   name
 00000733  ADC12MEM9_H                            
 00000732  ADC12MEM9_L                            
 00004400  ADC12_ISR                              
-000129ce  C$$EXIT                                
+00012a1e  C$$EXIT                                
 000008c0  CBCTL0                                 
 000008c1  CBCTL0_H                               
 000008c0  CBCTL0_L                               
@@ -549,21 +550,21 @@ address   name
 00000146  FCTL4                                  
 00000147  FCTL4_H                                
 00000146  FCTL4_L                                
-00012956  Graphics_clearDisplay                  
-00012966  Graphics_clearDisplayOnDisplay         
-00012890  Graphics_drawHorizontalLineOnDisplay   
-00011b96  Graphics_drawLineH                     
-00012974  Graphics_drawPixelOnDisplay            
+000129a6  Graphics_clearDisplay                  
+000129b6  Graphics_clearDisplayOnDisplay         
+000128e0  Graphics_drawHorizontalLineOnDisplay   
+00011ba2  Graphics_drawLineH                     
+000129c4  Graphics_drawPixelOnDisplay            
 00010000  Graphics_drawString                    
-000121de  Graphics_drawStringCentered            
-000129aa  Graphics_flushBuffer                   
-00012982  Graphics_flushOnDisplay                
-00011d42  Graphics_getStringWidth                
-000126d6  Graphics_initContext                   
-000128aa  Graphics_setBackgroundColor            
-000129c8  Graphics_setFont                       
-000128c2  Graphics_setForegroundColor            
-00012990  Graphics_translateColorOnDisplay       
+000121ea  Graphics_drawStringCentered            
+000129fa  Graphics_flushBuffer                   
+000129d2  Graphics_flushOnDisplay                
+00011d4e  Graphics_getStringWidth                
+00012726  Graphics_initContext                   
+000128fa  Graphics_setBackgroundColor            
+00012a18  Graphics_setFont                       
+00012912  Graphics_setForegroundColor            
+000129e0  Graphics_translateColorOnDisplay       
 000004c4  MAC                                    
 000004da  MAC32H                                 
 000004db  MAC32H_H                               
@@ -855,11 +856,11 @@ address   name
 0000019a  SYSUNIV                                
 0000019b  SYSUNIV_H                              
 0000019a  SYSUNIV_L                              
-000122cc  Sharp96x96_ClearScreen                 
-00011aa2  Sharp96x96_Flush                       
-00012336  Sharp96x96_Init                        
-00011f8a  Sharp96x96_PixelDraw                   
-0001251a  Sharp96x96_SendToggleVCOMCommand       
+000122d8  Sharp96x96_ClearScreen                 
+00011aae  Sharp96x96_Flush                       
+00012342  Sharp96x96_Init                        
+00011f96  Sharp96x96_PixelDraw                   
+00012526  Sharp96x96_SendToggleVCOMCommand       
 00000352  TA0CCR0                                
 00000354  TA0CCR1                                
 00000356  TA0CCR2                                
@@ -1160,9 +1161,9 @@ address   name
 0000490a  __TI_Handler_Table_Base                
 00004916  __TI_Handler_Table_Limit               
 00004506  __TI_ISR_TRAP                          
-000124c6  __TI_auto_init_nobinit_nopinit_hold_wdt
-00012256  __TI_decompress_lzss                   
-00012944  __TI_decompress_none                   
+000124d2  __TI_auto_init_nobinit_nopinit_hold_wdt
+00012262  __TI_decompress_lzss                   
+00012994  __TI_decompress_none                   
 0000ffd2  __TI_int41                             
 0000ffd4  __TI_int42                             
 0000ffd6  __TI_int43                             
@@ -1188,58 +1189,59 @@ address   name
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-000127e6  __TI_zero_init                         
+00012836  __TI_zero_init                         
 ffffffff  __c_args__                             
-00011976  __mspabi_addf                          
-0001214e  __mspabi_divf                          
-000127ba  __mspabi_divi                          
-00012696  __mspabi_divli                         
-000128f2  __mspabi_divu                          
-0001246e  __mspabi_divul                         
-000123a0  __mspabi_fixfi                         
-00012604  __mspabi_fltlif                        
-0001280a  __mspabi_fltuf                         
-00011ed2  __mspabi_mpyf                          
-000128da  __mspabi_mpyi_f5hw                     
-0001282e  __mspabi_mpyl_f5hw                     
-000127ba  __mspabi_remi                          
-00012696  __mspabi_remli                         
-000128f2  __mspabi_remu                          
-0001246e  __mspabi_remul                         
-000129be  __mspabi_slli                          
-000129b4  __mspabi_srai                          
-00011970  __mspabi_subf                          
+00011982  __mspabi_addf                          
+0001215a  __mspabi_divf                          
+0001280a  __mspabi_divi                          
+000126e6  __mspabi_divli                         
+00012942  __mspabi_divu                          
+0001247a  __mspabi_divul                         
+000123ac  __mspabi_fixfi                         
+00012610  __mspabi_fltlif                        
+0001285a  __mspabi_fltuf                         
+00011ede  __mspabi_mpyf                          
+0001292a  __mspabi_mpyi_f5hw                     
+0001287e  __mspabi_mpyl_f5hw                     
+0001280a  __mspabi_remi                          
+000126e6  __mspabi_remli                         
+00012942  __mspabi_remu                          
+0001247a  __mspabi_remul                         
+00012a0e  __mspabi_slli                          
+00012a04  __mspabi_srai                          
+0001197c  __mspabi_subf                          
 000044e0  _c_int00_noargs                        
 0000fffe  _reset_vector                          
 00004360  _stack                                 
-000129d8  _system_post_cinit                     
-000129d4  _system_pre_init                       
-000129ce  abort                                  
-000120bc  averageTemp                            
+00012a28  _system_post_cinit                     
+00012a24  _system_pre_init                       
+00012a1e  abort                                  
+000120c8  averageTemp                            
 00002914  avgTemp                                
-00012852  configBtn                              
-0001256c  configDisplay                          
-0001264e  configKeypad                           
-0001138e  displayTemp                            
+000128a2  configBtn                              
+00012578  configDisplay                          
+0001265a  configKeypad                           
+0001139a  displayTemp                            
 000107e6  displayTime                            
-000110e6  displayTmpTime                         
+000110f2  displayTmpTime                         
 00002923  flagSendToggleVCOMCommand              
 000028f8  g_sContext                             
 00004806  g_sFontFixed6x8                        
 000048ce  g_sharp96x96LCD                        
-00012874  getBtn                                 
-00011c72  getDayFromMonth                        
-00012712  initADC                                
-00012908  initLeds                               
+000128c4  getBtn                                 
+00011c7e  getDayFromMonth                        
+00012762  initADC                                
+00012958  initLeds                               
 00002924  leapYear                               
 00010d8e  main                                   
-0001291c  memcpy                                 
+0001296c  memcpy                                 
 00002920  mode                                   
 00002918  pos                                    
 000048fa  referse_data                           
-00012784  reverse                                
-00012930  startTimerA2                           
-0001299e  stopTimerA2                            
+000127d4  reverse                                
+000126a2  setLeds                                
+00012980  startTimerA2                           
+000129ee  stopTimerA2                            
 00002880  tempStore                              
 0000291c  timerCount                             
 
@@ -2047,69 +2049,70 @@ address   name
 00010000  Graphics_drawString                    
 000107e6  displayTime                            
 00010d8e  main                                   
-000110e6  displayTmpTime                         
-0001138e  displayTemp                            
-00011970  __mspabi_subf                          
-00011976  __mspabi_addf                          
-00011aa2  Sharp96x96_Flush                       
-00011b96  Graphics_drawLineH                     
-00011c72  getDayFromMonth                        
-00011d42  Graphics_getStringWidth                
-00011ed2  __mspabi_mpyf                          
-00011f8a  Sharp96x96_PixelDraw                   
-000120bc  averageTemp                            
-0001214e  __mspabi_divf                          
-000121de  Graphics_drawStringCentered            
-00012256  __TI_decompress_lzss                   
-000122cc  Sharp96x96_ClearScreen                 
-00012336  Sharp96x96_Init                        
-000123a0  __mspabi_fixfi                         
-0001246e  __mspabi_divul                         
-0001246e  __mspabi_remul                         
-000124c6  __TI_auto_init_nobinit_nopinit_hold_wdt
-0001251a  Sharp96x96_SendToggleVCOMCommand       
-0001256c  configDisplay                          
-00012604  __mspabi_fltlif                        
-0001264e  configKeypad                           
-00012696  __mspabi_divli                         
-00012696  __mspabi_remli                         
-000126d6  Graphics_initContext                   
-00012712  initADC                                
-00012784  reverse                                
-000127ba  __mspabi_divi                          
-000127ba  __mspabi_remi                          
-000127e6  __TI_zero_init                         
-0001280a  __mspabi_fltuf                         
-0001282e  __mspabi_mpyl_f5hw                     
-00012852  configBtn                              
-00012874  getBtn                                 
-00012890  Graphics_drawHorizontalLineOnDisplay   
-000128aa  Graphics_setBackgroundColor            
-000128c2  Graphics_setForegroundColor            
-000128da  __mspabi_mpyi_f5hw                     
-000128f2  __mspabi_divu                          
-000128f2  __mspabi_remu                          
-00012908  initLeds                               
-0001291c  memcpy                                 
-00012930  startTimerA2                           
-00012944  __TI_decompress_none                   
-00012956  Graphics_clearDisplay                  
-00012966  Graphics_clearDisplayOnDisplay         
-00012974  Graphics_drawPixelOnDisplay            
-00012982  Graphics_flushOnDisplay                
-00012990  Graphics_translateColorOnDisplay       
-0001299e  stopTimerA2                            
-000129aa  Graphics_flushBuffer                   
-000129b4  __mspabi_srai                          
-000129be  __mspabi_slli                          
-000129c8  Graphics_setFont                       
-000129ce  C$$EXIT                                
-000129ce  abort                                  
-000129d4  _system_pre_init                       
-000129d8  _system_post_cinit                     
+000110f2  displayTmpTime                         
+0001139a  displayTemp                            
+0001197c  __mspabi_subf                          
+00011982  __mspabi_addf                          
+00011aae  Sharp96x96_Flush                       
+00011ba2  Graphics_drawLineH                     
+00011c7e  getDayFromMonth                        
+00011d4e  Graphics_getStringWidth                
+00011ede  __mspabi_mpyf                          
+00011f96  Sharp96x96_PixelDraw                   
+000120c8  averageTemp                            
+0001215a  __mspabi_divf                          
+000121ea  Graphics_drawStringCentered            
+00012262  __TI_decompress_lzss                   
+000122d8  Sharp96x96_ClearScreen                 
+00012342  Sharp96x96_Init                        
+000123ac  __mspabi_fixfi                         
+0001247a  __mspabi_divul                         
+0001247a  __mspabi_remul                         
+000124d2  __TI_auto_init_nobinit_nopinit_hold_wdt
+00012526  Sharp96x96_SendToggleVCOMCommand       
+00012578  configDisplay                          
+00012610  __mspabi_fltlif                        
+0001265a  configKeypad                           
+000126a2  setLeds                                
+000126e6  __mspabi_divli                         
+000126e6  __mspabi_remli                         
+00012726  Graphics_initContext                   
+00012762  initADC                                
+000127d4  reverse                                
+0001280a  __mspabi_divi                          
+0001280a  __mspabi_remi                          
+00012836  __TI_zero_init                         
+0001285a  __mspabi_fltuf                         
+0001287e  __mspabi_mpyl_f5hw                     
+000128a2  configBtn                              
+000128c4  getBtn                                 
+000128e0  Graphics_drawHorizontalLineOnDisplay   
+000128fa  Graphics_setBackgroundColor            
+00012912  Graphics_setForegroundColor            
+0001292a  __mspabi_mpyi_f5hw                     
+00012942  __mspabi_divu                          
+00012942  __mspabi_remu                          
+00012958  initLeds                               
+0001296c  memcpy                                 
+00012980  startTimerA2                           
+00012994  __TI_decompress_none                   
+000129a6  Graphics_clearDisplay                  
+000129b6  Graphics_clearDisplayOnDisplay         
+000129c4  Graphics_drawPixelOnDisplay            
+000129d2  Graphics_flushOnDisplay                
+000129e0  Graphics_translateColorOnDisplay       
+000129ee  stopTimerA2                            
+000129fa  Graphics_flushBuffer                   
+00012a04  __mspabi_srai                          
+00012a0e  __mspabi_slli                          
+00012a18  Graphics_setFont                       
+00012a1e  C$$EXIT                                
+00012a1e  abort                                  
+00012a24  _system_pre_init                       
+00012a28  _system_post_cinit                     
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
 ffffffff  __c_args__                             
 
-[863 symbols]
+[864 symbols]
