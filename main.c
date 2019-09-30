@@ -237,7 +237,7 @@ void displayTemp(float inAvgTempC){
     f[5] = ' ';
     f[6] = 'F';
     f[7] = '\0';
-    float inAvgTempF = inAvgTempC*9/5+32;
+    float inAvgTempF = inAvgTempC*9.0/5.0+32.0;
 
     inAvgTempC*=10;
     inAvgTempF*=10;
